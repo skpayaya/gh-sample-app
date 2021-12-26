@@ -1,14 +1,14 @@
-name: Cache node modules
-id: cache-nodemodules
-uses: actions/cache@v2
-env:
-  cache-name: cache-node-modules
-with:
-  # caching node_modules
-  path: node_modules # 👈 path for node_modules folder
-  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-  # 👆 name of the cache key includes package-lock.json
-  restore-keys: |
-    ${{ runner.os }}-build-${{ env.cache-name }}-
-    ${{ runner.os }}-build-
-    ${{ runner.os }}-
+- name: Cache Node modules
+  uses: actions/cache@v2 
+  env:
+    cache-name: cache-node-modules
+  with:
+    # A list of files, directories, and wildcard patterns to cache and restore
+    path: node_modules
+    # An explicit key for restoring and saving the cache
+    key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+    # 👆 name of the chache key includes package-lock.json
+    restore-keys: |
+      ${{ runner.os }}-build-${{ env.cache-name }}-
+      ${{ runner.os }}-build-
+      ${{ runner.os }}-
